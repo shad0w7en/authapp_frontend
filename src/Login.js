@@ -87,7 +87,7 @@ const Login = () =>{
                 <h2>Profile</h2>
                 <div>Username: {profile.username}</div>
                 <div>password: {profile.password}</div>
-                <div>Roles : {profile.roles.join(", ")}</div>
+                <div>Roles : {Array.isArray(profile.role) ? profile.role.join(", ") : "No roles found"}</div>
                 <div>message: {profile.message}</div>
             </div>
         )}
