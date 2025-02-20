@@ -61,7 +61,7 @@ const Login = () =>{
         }
     };
     return (<div>
-        <form onSubmit={handleLogin}>
+        {!profile ? (<form onSubmit={handleLogin}>
             <div>
                 <label>Username:</label>
                 <input
@@ -79,18 +79,16 @@ const Login = () =>{
                 />
             </div>
             <button type="submit">Login</button>
-        </form>
-        {message && <p>{message}</p>}
-        {jwtToken && <p>JWT Token: {jwtToken}</p>}
-        {profile && (
-            <div>
+        </form>):(<div>
                 <h2>Profile</h2>
                 <div>Username: {profile.username}</div>
                 <div>password: {profile.password}</div>
                 <div>Roles : {Array.isArray(profile.role) ? profile.role.join(", ") : "No roles found"}</div>
                 <div>message: {profile.message}</div>
-            </div>
-        )}
+            </div>)}
+        {message && <p>{message}</p>}
+        {jwtToken && <p>JWT Token: {jwtToken}</p>}
+        
     </div>);
 }
 
