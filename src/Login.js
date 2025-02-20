@@ -10,6 +10,14 @@ const Login = () =>{
 
     const [profile , setProfile] = useState(null);
 
+    const handleLogout = async () =>{
+        setUsername("");
+        setProfile(null);
+        setPassword("");
+        setJwtToken("");
+        setMessage("Log Out Successful");
+    }
+
     const handleProfile = async (jwtToken) =>{
         console.log("JWT Token in handleProfile :" , jwtToken);
         try{
@@ -78,13 +86,14 @@ const Login = () =>{
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
-            <button type="submit">Login</button>
+            <button type="submit" className="button">Login</button>
         </form>):(<div>
                 <h2>Profile</h2>
                 <div>Username: {profile.username}</div>
                 <div>password: {profile.password}</div>
                 <div>Roles : {Array.isArray(profile.role) ? profile.role.join(", ") : "No roles found"}</div>
                 <div>message: {profile.message}</div>
+                <button onClick={handleLogout} className="button">Log Out</button>
             </div>)}
         {message && <p>{message}</p>}
         {jwtToken && <p>JWT Token: {jwtToken}</p>}
